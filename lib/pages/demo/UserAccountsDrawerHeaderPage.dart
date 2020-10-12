@@ -16,7 +16,7 @@ class UserAccountsDrawerHeaderPage extends StatelessWidget {
               accountEmail: Text('kelin410@163.com'),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(
-                    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600855650112&di=d111e323030b72d86ba47623dac3d15c&imgtype=0&src=http%3A%2F%2Fimage.biaobaiju.com%2Fuploads%2F20181227%2F21%2F1545917308-LtEHidYMZa.jpeg'),
+                    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602514093108&di=36968dde524557ed98c99af329d5ddc4&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20170929%2Fe28345e8e98b4d7e80cea28586415e47.jpeg'),
               ),
               onDetailsPressed: () => Toast.show(context, '查看用户信息'),
               arrowColor: Colors.blue,
