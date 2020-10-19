@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_demo_one/Navigation.dart';
 import 'package:flutter_demo_one/common/mutableState.dart';
+import 'package:flutter_demo_one/common/pageableState.dart';
 import 'package:flutter_demo_one/model/hospital.dart';
 import 'package:flutter_demo_one/styles.dart';
 
-import '../../common/commonListState.dart';
 
-Dio dio = Dio(BaseOptions(baseUrl: 'http://staging.kangyu.co'));
+Dio dio = Dio(BaseOptions(baseUrl: 'http://staging.kangyu.co',connectTimeout: 10000));
 
 class HospitalList extends StatefulWidget {
   @override
@@ -18,25 +18,51 @@ class HospitalList extends StatefulWidget {
   }
 }
 
-class _HospitalListState extends CommonListState<HospitalList, Hospital> {
+class _HospitalListState extends PageableState<HospitalList, Hospital> {
   String keyWords = "";
   int _page = 1;
 
   @override
   void initState() {
     super.initState();
+    dio.interceptors.add(Interceptor());
+
     getHospitalList(_page);
   }
 
   @override
-  onLoadMore() {
-    getHospitalList(++_page);
+  onRefresh() {
+    _page = 1;
+    getHospitalList(1);
+  }
+
+  @override
+  onLoadMore(bool retry) {
+    getHospitalList(retry ? _page : ++_page);
+  }
+
+  @override
+  void onGetInitData() {
+    getHospitalList(_page);
   }
 
   void getHospitalList(int page) async {
-    var resp = await dio.post('/v3/hospitals/search', data: {"page": page});
-    currentState = PageState.data;
-    addItem((resp.data['hospitals'] as List).map((v) => Hospital(v)).toList());
+    try {
+      var resp = await dio.post('/v3/hospitals/search', data: {"page": page});
+      var data = (resp.data['hospitals'] as List).map((v) => Hospital(v)).toList();
+      showDataView();
+      if(page == 1) {
+        setItem(data);
+      }else{
+        addItem(data);
+      }
+    }catch (e) {
+      if(page == 1) {
+        showRetryView('网络错误');
+      }else {
+        setLoadMoreError();
+      }
+    }
   }
 
   @override
@@ -57,8 +83,7 @@ class _HospitalListState extends CommonListState<HospitalList, Hospital> {
 }
 
 class HospitalCell extends Container {
-  HospitalCell(Hospital item)
-      : super(
+  HospitalCell(Hospital item) : super(
             padding: Styles.padding.common,
             decoration: BoxDecoration(
                 color: Colors.white,

@@ -1,35 +1,45 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_demo_one/common/mutableState.dart';
 
-abstract class CommonListState<W extends StatefulWidget, T> extends MutableState<W> {
+abstract class CommonListState<W extends StatefulWidget, T>
+    extends MutableState<W> {
   List<T> _dataList = List();
 
-  set dataList(List<T> list) {
+  @protected
+  void setItem(List<T> list) {
     setState(() {
       this._dataList = list;
     });
   }
 
+  @protected
   void addItem(List<T> list) {
     setState(() {
       this._dataList.addAll(list);
     });
   }
 
-  @protected
-  onLoadMore() {}
+  List<T> get dataList{
+    return this._dataList;
+  }
 
+  @protected
+  onRefresh() {}
+
+  @protected
+  onLoadMore(bool retry) {}
 
   @override
   Widget buildDataPage(BuildContext context) {
-    return ListView.builder(
-        itemCount: _dataList.length, itemBuilder: _createItemCell);
+    return RefreshIndicator(
+      child: ListView.builder(
+          itemCount: _dataList.length,
+          itemBuilder: createItemCell),
+      onRefresh: () => Future.delayed(Duration(), () => onRefresh()),
+    );
   }
 
-  Widget _createItemCell(BuildContext context, int position) {
-    if (position + 3 == this._dataList.length) {
-      onLoadMore();
-    }
+  Widget createItemCell(BuildContext context, int position) {
     return onCreateItemCell(context, _dataList.elementAt(position), position);
   }
 
