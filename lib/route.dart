@@ -3,6 +3,7 @@ import 'package:flutter_demo_one/pages/demo/DrawerPage.dart';
 import 'package:flutter_demo_one/pages/demo/MovieDetail.dart';
 import 'package:flutter_demo_one/pages/demo/SuperiorTabController.dart';
 import 'package:flutter_demo_one/pages/demo/UserAccountsDrawerHeaderPage.dart';
+import 'package:flutter_demo_one/pages/demo/custom_painter_page.dart';
 import 'package:flutter_demo_one/pages/hospital/hospitalDetailPage.dart';
 import 'package:flutter_demo_one/pages/demo/Test.dart';
 import 'package:flutter_demo_one/pages/demo/Test2.dart';
@@ -17,7 +18,7 @@ final routes = {
   '/movieDetail': (context, {arguments}) => MovieDetailPage(arguments),
   '/superiorTabController': (context) => SuperiorTabControllerPage(),
   '/drawer/drawerHeader': (context) => DrawerPage(),
-  '/drawer/userAccountsDrawerHeaderPage': (context) => UserAccountsDrawerHeaderPage(),
+  '/drawer/userAccountsDrawerHeaderPage': (context) => UserAccountsDrawerHeaderPage()
 };
 
 Function generateRoute = (RouteSettings settings) {

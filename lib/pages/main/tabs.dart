@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_one/common/PageRoot.dart';
 import 'package:flutter_demo_one/common/toast.dart';
+import 'package:flutter_demo_one/pages/demo/demos_page.dart';
 import 'package:flutter_demo_one/pages/main/mePage.dart';
 
 import 'homePage.dart';
@@ -14,10 +15,10 @@ class Tabs extends StatefulWidget {
 }
 
 class _TabsState extends State<Tabs> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   List<_Tab> pages = [
     _Tab(Icons.home, '首页', HomePage()),
-    _Tab(Icons.accessible, '医院', HospitalList()),
+    _Tab(Icons.accessible, 'Demo', DemosPage()),
     _Tab(Icons.person, '我的', null)
   ];
 

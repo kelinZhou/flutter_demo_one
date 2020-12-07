@@ -70,6 +70,10 @@ AppbarTabController createMeTabControllerBuilder(BuildContext context) {
     TabContainer(
         tabName: 'Json Map互转',
         child: HttpDemoWidget()
+    ),
+    TabContainer(
+        tabName: '弹窗',
+        child: DialogDemoWidget()
     )
   ]);
 }
