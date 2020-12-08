@@ -12,8 +12,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,  //去除右上角的debug提示条。
       theme: ThemeData(
-        primarySwatch: Colors.blue
+        primarySwatch: Colors.blue,
+        appBarTheme: AppBarTheme(
+          elevation: 0
+        )
       ),
+      darkTheme: ThemeData.dark(),
       initialRoute: '/',
       onGenerateRoute: generateRoute,
       localizationsDelegates: [
