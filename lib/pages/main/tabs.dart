@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_one/common/PageRoot.dart';
 import 'package:flutter_demo_one/common/toast.dart';
-import 'package:flutter_demo_one/pages/demo/demos_page.dart';
+import 'package:flutter_demo_one/pages/main/demos_page.dart';
 import 'package:flutter_demo_one/pages/main/mePage.dart';
 
 import 'homePage.dart';

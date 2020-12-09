@@ -35,12 +35,12 @@ class _HomePageState extends State<HomePage> {
       child: Wrap(
         spacing: 10,
         runSpacing: 10,
-        children: getTagsWidget(context),
+        children: getTagsWidget(),
       ),
     );
   }
 
-  List<Widget> getTagsWidget(BuildContext context) {
+  List<Widget> getTagsWidget() {
     return tags.map((v) {
       return InkWell(
         child: Chip(

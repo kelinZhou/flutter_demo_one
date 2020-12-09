@@ -6,10 +6,12 @@ import 'package:flutter_demo_one/pages/demo/page_view.dart';
 import 'package:flutter_demo_one/pages/demo/reorderable_list_view_page.dart';
 import 'package:flutter_demo_one/pages/demo/rive_flare_page.dart';
 import 'package:flutter_demo_one/pages/demo/single_child_scroll_view_page.dart';
+import 'package:flutter_demo_one/pages/demo/stream_builder_page.dart';
+import 'package:flutter_demo_one/pages/demo/stream_num_game_page.dart';
 import 'package:flutter_demo_one/pages/github/git_hub_events_page.dart';
 
-import 'grid_view_page.dart';
-import 'list_wheel_scroll_view_page.dart';
+import '../demo/grid_view_page.dart';
+import '../demo/list_wheel_scroll_view_page.dart';
 
 class DemosPage extends StatelessWidget {
   @override
@@ -19,6 +21,14 @@ class DemosPage extends StatelessWidget {
         DemoItemWidget(
           name: "网络请求，Json综合演示",
           onTap: () => push(context, GitHubEventsPage()),
+        ),
+        DemoItemWidget(
+          name: "Stream&StreamBuilder",
+          onTap: () => push(context, StreamBuilderPage()),
+        ),
+        DemoItemWidget(
+          name: "Stream猜数字游戏",
+          onTap: () => push(context, StreamNumGamePage()),
         ),
         DemoItemWidget(
           name: "CustomPainter",

@@ -35,7 +35,7 @@ abstract class CommonListState<W extends StatefulWidget, T>
       child: ListView.builder(
           itemCount: _dataList.length,
           itemBuilder: createItemCell),
-      onRefresh: () => Future.delayed(Duration(), () => onRefresh()),
+      onRefresh: () => Future(() => onRefresh()),
     );
   }
 
